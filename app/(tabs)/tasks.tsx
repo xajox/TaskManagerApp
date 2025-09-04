@@ -56,7 +56,7 @@ export default function TasksScreen() {
           onSubmitEditing={addTask}
           returnKeyType="done"
         />
-        <Button title="Add" onPress={addTask} />
+        <Button title="Pridať" onPress={addTask} />
       </View>
 
       <FlatList
