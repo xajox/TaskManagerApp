@@ -36,20 +36,20 @@ export default function TasksScreen() {
   };
 
   const confirmDelete = (id: string) => {
-    Alert.alert("Delete task", "Are you sure?", [
-      { text: "Cancel", style: "cancel" },
-      { text: "Delete", style: "destructive", onPress: () => deleteTask(id) },
+    Alert.alert("Vymazať úlohu", "Si si istý?", [
+      { text: "Zrušiť", style: "cancel" },
+      { text: "Vymazať", style: "destructive", onPress: () => deleteTask(id) },
     ]);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>My Tasks</Text>
+      <Text style={styles.title}>Moje úlohy</Text>
 
       <View style={styles.inputRow}>
         <TextInput
           style={styles.input}
-          placeholder="Enter a new task"
+          placeholder="Vlož novú úlohu"
           placeholderTextColor="#aaa"
           value={task}
           onChangeText={setTask}
@@ -75,7 +75,7 @@ export default function TasksScreen() {
           </TouchableOpacity>
         )}
         ListEmptyComponent={
-          <Text style={styles.empty}>No tasks yet. Add your first one 👇</Text>
+          <Text style={styles.empty}>Zatiaľ žiadné úlohy. Pirdajte sovjú prvú. 👇</Text>
         }
       />
     </View>
