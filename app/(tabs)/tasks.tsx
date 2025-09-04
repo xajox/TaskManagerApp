@@ -1,14 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import {
-    Alert,
-    Button,
-    FlatList,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -17,10 +17,12 @@ type Task = {
   text: string;
   done: boolean;
 };
+type Filter = 'all' | 'active' | 'completed';
 
 export default function TasksScreen() {
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [filter, setFilter] = useState<Filter>('all');
 
   // Načítanie zo storage pri štarte
   useEffect(() => {
@@ -64,6 +66,20 @@ export default function TasksScreen() {
       },
     ]);
   };
+  const clearCompleted = () => {
+    const hasCompleted = tasks.some((t) => t.done);
+    if (!hasCompleted) return;
+
+    Alert.alert('Clear completed?', 'This will remove all completed tasks.', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: () => setTasks((prev) => prev.filter((t) => !t.done)),
+      },
+    ]);
+  };
+
   const logStorage = async () => {
     try {
       const keys = await AsyncStorage.getAllKeys();
@@ -73,6 +89,9 @@ export default function TasksScreen() {
       console.error('Error reading AsyncStorage', e);
     }
   };
+  const visibleTasks = tasks.filter((t) =>
+    filter === 'all' ? true : filter === 'active' ? !t.done : t.done,
+  );
 
   const addTask = () => {
     if (!task.trim()) return;
@@ -113,14 +132,41 @@ export default function TasksScreen() {
           />
           <Button title="Pridať" onPress={addTask} />
         </View>
-        <View style={{ marginBottom: 20, alignItems: 'center' }}>
+        <View style={{ marginBottom: 10, alignItems: 'center' }}>
           <Button title="Debug úložiska" onPress={logStorage} />
           <View style={{ marginTop: 10 }} />
           <Button title="Vymazať úložisko" color="red" onPress={clearStorage} />
         </View>
+        <View style={{ marginTop: 10, marginBottom: 10, alignItems: 'center' }}>
+          <Button title="Clear Completed" onPress={clearCompleted} />
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+          <Text style={{ color: '#9bb7c9' }}>{tasks.filter((t) => !t.done).length} items left</Text>
+
+          <View style={{ flexDirection: 'row', gap: 8 }}>
+            <Text
+              onPress={() => setFilter('all')}
+              style={{ color: filter === 'all' ? '#61dafb' : '#9bb7c9' }}
+            >
+              All
+            </Text>
+            <Text
+              onPress={() => setFilter('active')}
+              style={{ color: filter === 'active' ? '#61dafb' : '#9bb7c9' }}
+            >
+              Active
+            </Text>
+            <Text
+              onPress={() => setFilter('completed')}
+              style={{ color: filter === 'completed' ? '#61dafb' : '#9bb7c9' }}
+            >
+              Completed
+            </Text>
+          </View>
+        </View>
 
         <FlatList
-          data={tasks}
+          data={visibleTasks}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           renderItem={({ item }) => (

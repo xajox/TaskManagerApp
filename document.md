@@ -21,10 +21,11 @@ vypisanie verzii
    - git status (ukazanie stav)
    - git pull (stiahnute zmeny od iných)
 6. Linkovanie prettier
-   - vytvorenie suboru .prettierrc a .prettierignore a vlozenie do package.json, musia byt nainstalovane. 
+   - vytvorenie suboru .prettierrc a .prettierignore a vlozenie do package.json, musia byt nainstalovane.
    - spustenie **npm run lint** a **npm run format**
 
-    **package.json**
+     **package.json**
+
    ```
    "scripts": {
    "lint": "eslint --ext .ts,.tsx .",
@@ -32,28 +33,30 @@ vypisanie verzii
    }
    ```
 
-    **.prettierrc**
-    ```
-    {
-    "semi": true,
-    "singleQuote": true,
-    "jsxSingleQuote": false,
-    "trailingComma": "all",
-    "printWidth": 100,
-    "tabWidth": 2,
-    "endOfLine": "auto"
-    }
-    ```
+   **.prettierrc**
 
-    **prettierignore**
-    ```
-    node_modules
-    dist
-    build
-    .expo
-    coverage
-    *.lock
-    *.log
-    ```
+   ```
+   {
+   "semi": true,
+   "singleQuote": true,
+   "jsxSingleQuote": false,
+   "trailingComma": "all",
+   "printWidth": 100,
+   "tabWidth": 2,
+   "endOfLine": "auto"
+   }
+   ```
 
-7. 
+   **prettierignore**
+
+   ```
+   node_modules
+   dist
+   build
+   .expo
+   coverage
+   *.lock
+   *.log
+   ```
+
+7.
