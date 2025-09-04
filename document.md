@@ -1,25 +1,59 @@
-Pred spustenim, treba mat nainstalove Node.js, GIT a vytvoreny priecinok projektu v pc alebo na serveri. 
+Pred spustenim, treba mat nainstalove Node.js, GIT a vytvoreny priecinok projektu v pc alebo na serveri.
 node -v
 npm -v
 git --version
-vypisanie verzii 
+vypisanie verzii
 
-1. install *npx create-expo-app@latest .*
-2. run app *npm start*
+1. install **npx create-expo-app@latest .**
+2. run app **npm start**
 3. Git inicializacia
-    -   git init
-    -   git add .
-    -   git commit -m "Initial commit - created TaskManagerApp with Expo"
+   - git init
+   - git add .
+   - git commit -m "Initial commit - created TaskManagerApp with Expo"
 4. vytvorenie noveho repozitara v GIT a nasledne prepojenie cez app
-    -   git remote add origin https://github.com/tvoje-meno/TaskManagerApp.git
-    -   git branch -M main
-    -   git push -u origin main
-5. GITovanie 
-    -   git add . (všetko) alebo git add (konkretny subor) = je to "staging", príprava súboru na commit
-    -   git commit -m "Popis upravy" = je to snapshot,  uložená verzia kódu
-    -   git push (odoslanie na GitHub)
-    -   git status (ukazanie stav)
-    -   git pull (stiahnute zmeny od iných)
+   - git remote add origin https://github.com/tvoje-meno/TaskManagerApp.git
+   - git branch -M main
+   - git push -u origin main
+5. GITovanie
+   - git add . (všetko) alebo git add (konkretny subor) = je to "staging", príprava súboru na commit
+   - git commit -m "Popis upravy" = je to snapshot, uložená verzia kódu
+   - git push (odoslanie na GitHub)
+   - git status (ukazanie stav)
+   - git pull (stiahnute zmeny od iných)
+6. Linkovanie prettier
+   - vytvorenie suboru .prettierrc a .prettierignore a vlozenie do package.json, musia byt nainstalovane. 
+   - spustenie **npm run lint** a **npm run format**
 
+    **package.json**
+   ```
+   "scripts": {
+   "lint": "eslint --ext .ts,.tsx .",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+   }
+   ```
 
+    **.prettierrc**
+    ```
+    {
+    "semi": true,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "trailingComma": "all",
+    "printWidth": 100,
+    "tabWidth": 2,
+    "endOfLine": "auto"
+    }
+    ```
 
+    **prettierignore**
+    ```
+    node_modules
+    dist
+    build
+    .expo
+    coverage
+    *.lock
+    *.log
+    ```
+
+7. 

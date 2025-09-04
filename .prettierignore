@@ -1,0 +1,15 @@
+# build artifacts
+node_modules
+dist
+build
+.expo
+
+# test coverage
+coverage
+
+# lock and log files
+*.lock
+*.log
+
+# misc
+.DS_Store
