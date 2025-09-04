@@ -14,4 +14,12 @@ vypisanie verzii
     -   git remote add origin https://github.com/tvoje-meno/TaskManagerApp.git
     -   git branch -M main
     -   git push -u origin main
+5. GITovanie 
+    -   git add . (všetko) alebo git add (konkretny subor) = je to "staging", príprava súboru na commit
+    -   git commit -m "Popis upravy" = je to snapshot,  uložená verzia kódu
+    -   git push (odoslanie na GitHub)
+    -   git status (ukazanie stav)
+    -   git pull (stiahnute zmeny od iných)
+
+
 
